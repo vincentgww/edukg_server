@@ -1,0 +1,28 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.login.dao.UserDao">
+    <resultMap id="BaseResultMap" type="com.example.login.entity.User" >
+        <result column="account" property="account" />
+        <result column="id" property="id" />
+        <result column="age" property="age" />
+        <result column="name" property="name" />
+        <result column="address" property="address" />
+        <result column="password" property="password" />
+    </resultMap>
+    <select id="findByInf" resultMap="BaseResultMap">
+        select * from user where account = #{account} AND password = #{password}
+    </select>
+    <select id="findById" resultMap="BaseResultMap">
+        select * from user where id = #{id}
+    </select>
+    <select id="findByAccount" resultMap="BaseResultMap">
+        select * from user where account = #{account}
+    </select>
+    <select id="findAll" resultMap="BaseResultMap">
+        select * from user
+    </select>
+    <insert id="addUser" parameterType="com.example.login.entity.User">
+        INSERT INTO user (account,age,name,address,password) VALUES (#{account},#{age},#{name},#{address},#{password});
+    </insert>
+</mapper>
